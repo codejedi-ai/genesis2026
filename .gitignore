@@ -1,42 +1,73 @@
-# dependencies
-/node_modules
+# ============================
+# Root .gitignore
+# ============================
 
-# testing
-/coverage
+# Local Netlify folder
+.netlify
 
-# production
-/build
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
 
-# misc
-.DS_Store
-*.swp
+# Hardhat / Ethereum
+artifacts/
+cache/
+contracts/*.json
 *.dia~
 
-# logs
+# Node (root level only - frontend has its own node_modules)
+# frontend/node_modules is ignored by frontend/.gitignore
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# local env files
-.env*.local
-
-# tmp
-.ice
-
-# cache
-.eslintcache
-.stylelintcache
-.env
-
-# Local Netlify folder
-.netlify
-
-# local assistant artifacts
-.aider*
-.next
-.idea
-
-# secrets
+# Secrets
 gcloud-creds.json
 **/GPT_SECRET_KEY.json
+*.pem
+*.key
+
+# Aider
+.aider*
+
+# Test artifacts
+test/coverage/
