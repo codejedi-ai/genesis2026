@@ -2,9 +2,6 @@
 # Root .gitignore
 # ============================
 
-# Local Netlify folder
-.netlify
-
 # Python
 __pycache__/
 *.py[cod]
