@@ -1,0 +1,43 @@
+{
+  "publicPath": "/",
+  "entries": {
+    "main": [
+      "js/framework.js",
+      "js/59.js",
+      "css/main.css",
+      "js/main.js"
+    ]
+  },
+  "pages": {
+    "documentation": [
+      "css/p_documentation.css",
+      "js/p_documentation.js"
+    ],
+    "api-hello": [
+      "js/p_api-hello.js"
+    ],
+    "api-test": [
+      "css/p_api-test.css",
+      "js/p_api-test.js"
+    ],
+    "download": [
+      "css/p_download.css",
+      "js/p_download.js"
+    ],
+    "features": [
+      "css/p_features.css",
+      "js/p_features.js"
+    ],
+    "about": [
+      "css/p_about.css",
+      "js/p_about.js"
+    ],
+    "index": [
+      "css/p_index.css",
+      "js/p_index.js"
+    ]
+  },
+  "assets": {
+    "src/assets/logo.png": "3135bd30"
+  }
+}

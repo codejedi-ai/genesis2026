@@ -1,0 +1,44 @@
+{
+  "name": "impact-commons",
+  "version": "1.0.0",
+  "description": "Impact Commons — Labor valued by impact, not by money",
+  "dependencies": {
+    "@ice/runtime": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@applint/spec": "^1.2.3",
+    "@ice/app": "^3.4.0",
+    "@netlify/functions": "^4.2.6",
+    "@nomicfoundation/hardhat-ethers": "^4.0.2",
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.35.0",
+    "ethers": "^6.15.0",
+    "hardhat": "^3.0.10",
+    "stylelint": "^15.2.0",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "start": "ice start --speedup",
+    "start:netlify": "netlify dev",
+    "build": "ice build",
+    "eslint": "eslint ./src --cache --ext .js,.jsx,.ts,.tsx",
+    "eslint:fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint \"src/**/*.{css,scss,less}\" --cache",
+    "stylelint:fix": "npm run stylelint -- --fix"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "git@github.com:impact-commons/website.git",
+  "resolutions": {
+    "esbuild": "^0.25.10"
+  },
+  "overrides": {
+    "esbuild": "^0.25.10"
+  }
+}

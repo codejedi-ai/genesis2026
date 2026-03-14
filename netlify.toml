@@ -1,0 +1,64 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# API routes - these must come BEFORE the catch-all SPA route
+# These handle server-side API calls
+[[redirects]]
+  from = "/api/hello"
+  to = "/.netlify/functions/hello"
+  status = 200
+
+[[redirects]]
+  from = "/api/users"
+  to = "/.netlify/functions/users"
+  status = 200
+
+# React routes for hash-based navigation
+# These ensure all React routes serve the SPA
+[[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/features"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/analysis"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/documentation"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/download"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api-test"
+  to = "/index.html"
+  status = 200
+
+# Root route
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+# Catch-all for any other routes (must be last)
+# This handles hash-based routing (#/about, #/features, etc.)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

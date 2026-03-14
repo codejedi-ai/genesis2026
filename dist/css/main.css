@@ -1,0 +1,1 @@
+:root{--primary:#3178f6;--bg-primary:#fff}body{background-color:#000;color:#fff;font-family:Inter,sans-serif;margin:0;overflow-x:hidden;padding:0;width:100vw}#vanta-background{height:100%;left:0;position:fixed;top:0;width:100%;z-index:-1}@keyframes fadeIn{0%{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}

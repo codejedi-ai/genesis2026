@@ -1,0 +1,474 @@
+.page {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-top: 90px;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 300;
+  background: linear-gradient(90deg, #00ffff 0%, #00ffff 60%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  font-weight: 300;
+}
+
+.main {
+  padding-bottom: 4rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 300;
+}
+
+.subsection {
+  margin-bottom: 3rem;
+}
+
+.subsection h3 {
+  font-size: 1.8rem;
+  color: #ff69b4;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.comparisonCard {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.comparisonCard:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.comparisonCard h4 {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.comparisonCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comparisonCard li {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.comparisonCard li::before {
+  content: "•";
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+}
+
+.domainGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.domainCard {
+  background: rgba(255, 105, 180, 0.05);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.domainCard:hover {
+  background: rgba(255, 105, 180, 0.08);
+  border-color: rgba(255, 105, 180, 0.4);
+  transform: translateY(-2px);
+}
+
+.domainCard h4 {
+  color: #ff69b4;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.domainCard p {
+  color: #e6fdff;
+  font-size: 0.9rem;
+}
+
+.benefitGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.benefitCard {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.benefitCard:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.benefitCard h4 {
+  color: #00ffff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.benefitCard p {
+  color: #e6fdff;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.benefitCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.benefitCard li {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.benefitCard li::before {
+  content: "•";
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+}
+
+.simdComparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.simdCard {
+  background: rgba(255, 105, 180, 0.05);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.simdCard:hover {
+  background: rgba(255, 105, 180, 0.08);
+  border-color: rgba(255, 105, 180, 0.4);
+  transform: translateY(-2px);
+}
+
+.simdCard h4 {
+  color: #ff69b4;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.simdCard p {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+}
+
+.domainBenefits {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.domainBenefitCard {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.domainBenefitCard:hover {
+  border-color: rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.domainBenefitCard h3 {
+  color: #00ffff;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.beforeAfter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.beforeAfter h4 {
+  color: #ff69b4;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.beforeAfter ul {
+  list-style: none;
+  padding: 0;
+}
+
+.beforeAfter li {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.beforeAfter li::before {
+  content: "•";
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.performanceCard {
+  background: rgba(255, 105, 180, 0.05);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.performanceCard:hover {
+  background: rgba(255, 105, 180, 0.08);
+  border-color: rgba(255, 105, 180, 0.4);
+  transform: translateY(-2px);
+}
+
+.performanceCard h3 {
+  color: #ff69b4;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.performanceCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.performanceCard li {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.performanceCard li::before {
+  content: "•";
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+}
+
+.scenariosGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.scenarioCard {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.scenarioCard:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.scenarioCard h3 {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.scenarioCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scenarioCard li {
+  color: #e6fdff;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.scenarioCard li::before {
+  content: "•";
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+}
+
+.summaryCard {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.summaryCard:hover {
+  border-color: rgba(0, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.summaryText {
+  color: #e6fdff;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.summaryList {
+  color: #e6fdff;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.summaryList li {
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.summaryList li::before {
+  content: counter(list-item);
+  color: #00ffff;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.keyInsight {
+  background: rgba(255, 105, 180, 0.1);
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #ff69b4;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .comparison,
+  .simdComparison,
+  .beforeAfter,
+  .scenariosGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefitGrid,
+  .performanceGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .domainGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content {
+    padding: 0 0.5rem;
+  }
+  
+  .hero {
+    padding: 2rem 0;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+}
