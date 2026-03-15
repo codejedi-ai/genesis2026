@@ -12,14 +12,11 @@ export default defineConfig(() => ({
     onDemand: true,
     format: 'esm',
   },
-  // Proxy API calls to Netlify Functions
+  // Proxy API calls to RIB Pulse server
   proxy: {
     '/api': {
-      target: 'http://localhost:8888',
+      target: 'http://localhost:3001',
       changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/api'
-      }
     }
   }
 }));

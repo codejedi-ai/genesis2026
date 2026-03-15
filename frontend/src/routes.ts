@@ -11,28 +11,20 @@ export default defineRoutes([
         component: () => import('@/pages/index'),
       },
       {
-        path: '/about',
-        component: () => import('@/pages/about'),
+        path: '/feed',
+        component: () => import('@/pages/feed'),
       },
       {
-        path: '/features',
-        component: () => import('@/pages/features'),
+        path: '/capture',
+        component: () => import('@/pages/capture'),
       },
       {
-        path: '/analysis',
-        component: () => import('@/pages/analysis'),
+        path: '/dashboard',
+        component: () => import('@/pages/dashboard'),
       },
       {
-        path: '/documentation',
-        component: () => import('@/pages/documentation'),
-      },
-      {
-        path: '/download',
-        component: () => import('@/pages/download'),
-      },
-      {
-        path: '/api-test',
-        component: () => import('@/pages/api-test'),
+        path: '/agents',
+        component: () => import('@/pages/agents'),
       },
     ],
   },

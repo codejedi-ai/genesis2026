@@ -1,7 +1,7 @@
-# AuraFlow — System Design Diagram & Architecture
+# RIB Pulse — System Design Diagram & Architecture
 
-> **Project:** AuraFlow (Dreamwell Hackathon — "Reel It Back")
-> **Purpose:** AI-powered influencer-brand matching platform for influencer marketing managers
+> **Project:** RIB Pulse (GenAI Genesis 2026 — "Reel It Back")
+> **Purpose:** Three-sided conversation intelligence marketplace — Users, Businesses, AI Influencers
 > **Last Updated:** 2026-03-14
 
 ---
@@ -9,102 +9,80 @@
 ## 1. High-Level Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                          AuraFlow Platform                                  │
-│                                                                             │
-│  ┌──────────┐    ┌──────────────┐    ┌──────────────────────────────────┐   │
-│  │          │    │              │    │         INFERENCE LAYER           │   │
-│  │   USER   │───▶│   FRONTEND   │───▶│                                  │   │
-│  │          │    │   (Next.js)  │    │  ┌────────────┐  ┌───────────┐  │   │
-│  │          │◀───│              │◀───│  │Brand Agent │  │Influencer │  │   │
-│  └──────────┘    └──────────────┘    │  │            │  │  Agent    │  │   │
-│                         │            │  └─────┬──────┘  └─────┬─────┘  │   │
-│                         │            │        │               │        │   │
-│                         ▼            │        ▼               ▼        │   │
-│                  ┌──────────────┐    │  ┌──────────────────────────┐   │   │
-│                  │   BACKEND    │───▶│  │   MultiModal Inference   │   │   │
-│                  │  (Next.js    │    │  │  (Ollama / VertexAI /    │   │   │
-│                  │   Server +   │    │  │   Cohere / OpenAI)       │   │   │
-│                  │   FastAPI)   │    │  └──────────────────────────┘   │   │
-│                  └──────────────┘    └──────────────────────────────────┘   │
-│                                                      │                      │
-│                                                      ▼                      │
-│                                      ┌──────────────────────────────┐       │
-│                                      │          DATA LAYER          │       │
-│                                      │                              │       │
-│                                      │  ┌────────────┐ ┌────────┐  │       │
-│                                      │  │ Influencer │ │ Brands │  │       │
-│                                      │  │    DB      │ │   DB   │  │       │
-│                                      │  │ (Pinecone) │ │(Pinec.)│  │       │
-│                                      │  └────────────┘ └────────┘  │       │
-│                                      │                              │       │
-│                                      │  ┌────────┐ ┌────────────┐  │       │
-│                                      │  │Airtable│ │  Notion    │  │       │
-│                                      │  └────────┘ └────────────┘  │       │
-│                                      └──────────────────────────────┘       │
-└─────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                           RIB PULSE PLATFORM                                     │
+│                  "Your Voice. Your Influence. Zero Effort."                       │
+│                                                                                  │
+│   SIDE 1: USERS              SIDE 2: AI AGENTS             SIDE 3: BUSINESSES    │
+│   ┌──────────────┐           ┌──────────────┐              ┌──────────────┐      │
+│   │  Consumers / │           │  Autonomous  │              │  Local       │      │
+│   │  Influencers │           │  AI          │              │  Businesses  │      │
+│   │              │           │  Influencers │              │              │      │
+│   │  - Capture   │──────────▶│              │─────────────▶│  - Discover  │      │
+│   │    convos    │           │  - Listen    │              │    profiles  │      │
+│   │  - Voice/text│           │  - Generate  │              │  - See       │      │
+│   │  - Zero      │           │  - Publish   │              │    mentions  │      │
+│   │    effort    │           │  - 24/7      │              │  - Claim     │      │
+│   └──────┬───────┘           └──────┬───────┘              └──────┬───────┘      │
+│          │                          │                             │               │
+│          │     ┌────────────────────┼─────────────────────────────┘               │
+│          │     │                    │                                              │
+│          ▼     ▼                    ▼                                              │
+│   ┌──────────────────────────────────────────────────────────────────────┐        │
+│   │                         RIB PULSE SERVER                              │        │
+│   │                     Express 4 + WebSocket (ws)                        │        │
+│   │                          Port 3001                                    │        │
+│   │                                                                       │        │
+│   │   ┌─────────────┐  ┌──────────────┐  ┌──────────────┐               │        │
+│   │   │  REST API   │  │  WebSocket   │  │  Ed25519     │               │        │
+│   │   │  Endpoints  │  │  Server      │  │  Auth Layer  │               │        │
+│   │   │  /api/*     │  │  /ws         │  │  (TweetNaCl) │               │        │
+│   │   └─────────────┘  └──────────────┘  └──────────────┘               │        │
+│   │                                                                       │        │
+│   │   ┌─────────────┐  ┌──────────────┐  ┌──────────────┐               │        │
+│   │   │Conversations│  │  Agent       │  │  Feed        │               │        │
+│   │   │  Store      │  │  Registry    │  │  Store       │               │        │
+│   │   │  (in-mem)   │  │  (in-mem)    │  │  (in-mem)    │               │        │
+│   │   └─────────────┘  └──────────────┘  └──────────────┘               │        │
+│   └──────────────────────────────────────────────────────────────────────┘        │
+│                                                                                   │
+│   ┌──────────────────────────────────────────────────────────────────────┐        │
+│   │                          FRONTEND                                     │        │
+│   │                  Ice.js v3.4.0 + React 18 + TypeScript                │        │
+│   │                                                                       │        │
+│   │   ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌───────────┐ ┌──────────┐   │        │
+│   │   │ Landing │ │  Feed   │ │Capture  │ │ Dashboard │ │  Agents  │   │        │
+│   │   │  /      │ │  /feed  │ │/capture │ │/dashboard │ │ /agents  │   │        │
+│   │   └─────────┘ └─────────┘ └─────────┘ └───────────┘ └──────────┘   │        │
+│   └──────────────────────────────────────────────────────────────────────┘        │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. Detailed Component Diagram (from Application Infrastructure Canvas)
+## 2. Three-Sided Marketplace Flow
 
-The canvas file maps the following flow:
-
-```
-┌──────────┐   "Asks the Question:     ┌──────────────┐              ┌──────────────────────────┐
-│          │    Connects the source"    │              │              │                          │
-│   USER   │──────────────────────────▶│   FRONTEND   │─────────────▶│       BACKEND            │
-│          │                           │   (Next.js)  │              │  - Form request for      │
-│          │◀──────────────────────────│              │              │    brand type             │
-│          │  "Replies with influencers│              │              │  - API Auth Layer         │
-└──────────┘   user/company seeks"     └──────────────┘              │  - Next.js Server        │
-                                                                     └───────┬──────────────────┘
-                                                                             │
-                                           ┌─────────────────────────────────┼─────────────────────┐
-                                           │                                 │                     │
-                                           ▼                                 ▼                     ▼
-                              ┌─────────────────────┐         ┌──────────────────┐    ┌────────────────────┐
-                              │  Intelect/Inference  │         │  Open Source Dev  │    │  Branding Model    │
-                              │                      │         │  Philosophy       │    │                    │
-                              │  - Pull influencers  │         │                   │    │  - Trained on      │
-                              │    & brands          │         │  "Our preferences │    │    brand identity   │
-                              │  - FastAPI +         │         │   reflected by    │    │    data             │
-                              │    Ollama model      │         │   the LLMs"       │    │                    │
-                              └──────────┬───────────┘         └───────────────────┘    └────────┬───────────┘
-                                         │                                                       │
-                                         ▼                                                       ▼
-                              ┌─────────────────────┐                                 ┌─────────────────────┐
-                              │  Influencer Database │                                 │   Brands Database   │
-                              │  (Pinecone:          │                                 │   (Pinecone:        │
-                              │   meta3-hackathon)   │                                 │    dreamwell-       │
-                              └──────────────────────┘                                 │    hackathon)       │
-                                                                                       └─────────────────────┘
-```
-
-### Brand Agent Data Sources
+The cold-start problem is solved by the AI Agent layer (synthetic supply):
 
 ```
-┌──────────────────────────┐        ┌─────────────────────────┐
-│  MultiModal Inference    │◀───────│  Brainstorming Journal  │
-│                          │◀───────│  Notion                 │
-│  "Different models       │◀───────│  Airtable               │
-│   trained with different │        └─────────────────────────┘
-│   datasets from          │
-│   different cultures     │
-│   → reflects cultural    │
-│     preferences & biases"│
-└──────────────────────────┘
-```
+  SIDE 1: CONSUMERS                SIDE 2: AI AGENTS              SIDE 3: BUSINESSES
+  ─────────────────               ────────────────               ──────────────────
 
-### Influencer Agent Data Sources
+  "I had the best          ┌───────────────────┐          Cafe Luna discovers
+   brunch at Cafe    ─────▶│  TrendSpotter AI  │──────▶   it has a profile with
+   Luna yesterday"         │  VoiceOfTheStreet  │          247 organic mentions,
+                           │  LocalInsight Bot  │          4.2/5 sentiment score,
+  User speaks or types     │  Community Pulse   │          trending #CafeLuna
+  naturally. Conversation  │                    │
+  is captured via Web      │  Agents listen to  │          Business didn't sign up.
+  Speech API or text       │  conversation      │          Consumers put them in.
+  input. Zero effort.      │  stream via WS,    │          Business account unlocks
+                           │  generate social   │          intelligence dashboard.
+                           │  content 24/7.     │
+                           └───────────────────┘
 
-```
-┌──────────────────────────┐        ┌─────────────────────────┐
-│  MultiModal Inference    │◀───────│  Brainstorming Journal  │
-│  (Influencer-specific)   │◀───────│  Notion                 │
-│                          │◀───────│  Airtable               │
-└──────────────────────────┘        └─────────────────────────┘
+  FLYWHEEL:
+  More conversations ──▶ More AI content ──▶ More business value ──▶ More users
 ```
 
 ---
@@ -112,142 +90,194 @@ The canvas file maps the following flow:
 ## 3. Data Flow Sequence
 
 ```
-  User                Frontend           Backend (API)        Inference           Vector DB
-   │                    │                    │                    │                   │
-   │  Submit brand      │                    │                    │                   │
-   │  form (values,     │                    │                    │                   │
-   │  mission, emotion) │                    │                    │                   │
-   │───────────────────▶│                    │                    │                   │
-   │                    │  POST /ask_        │                    │                   │
-   │                    │  deepseek_         │                    │                   │
-   │                    │  influencer        │                    │                   │
-   │                    │───────────────────▶│                    │                   │
-   │                    │                    │  Embed query       │                   │
-   │                    │                    │  (Ollama llama3    │                   │
-   │                    │                    │   or OpenAI)       │                   │
-   │                    │                    │───────────────────▶│                   │
-   │                    │                    │                    │  Similarity       │
-   │                    │                    │                    │  search (k=10,    │
-   │                    │                    │                    │  threshold=0.5)   │
-   │                    │                    │                    │──────────────────▶│
-   │                    │                    │                    │                   │
-   │                    │                    │                    │◀─── Matching docs │
-   │                    │                    │                    │                   │
-   │                    │                    │  For each result:  │                   │
-   │                    │                    │  Cohere Command-A  │                   │
-   │                    │                    │  structures into   │                   │
-   │                    │                    │  InfluencerMatch   │                   │
-   │                    │                    │  JSON schema       │                   │
-   │                    │                    │◀───────────────────│                   │
-   │                    │                    │                    │                   │
-   │                    │◀───────────────────│                    │                   │
-   │                    │  JSON response:    │                    │                   │
-   │                    │  [{name, platform, │                    │                   │
-   │                    │    followers,       │                    │                   │
-   │                    │    vibeScore, ...}] │                    │                   │
-   │◀───────────────────│                    │                    │                   │
-   │  Display matched   │                    │                    │                   │
-   │  influencers       │                    │                    │                   │
+  User             Frontend          Server (:3001)       AI Agent (WS)       Feed
+   │                  │                   │                   │                 │
+   │  Speak/type      │                   │                   │                 │
+   │  conversation    │                   │                   │                 │
+   │─────────────────▶│                   │                   │                 │
+   │                  │                   │                   │                 │
+   │                  │  Client-side NLP  │                   │                 │
+   │                  │  (sentiment,      │                   │                 │
+   │                  │   topics,         │                   │                 │
+   │                  │   businesses)     │                   │                 │
+   │                  │                   │                   │                 │
+   │                  │  POST /api/       │                   │                 │
+   │                  │  conversations    │                   │                 │
+   │                  │──────────────────▶│                   │                 │
+   │                  │                   │                   │                 │
+   │                  │                   │  Server-side NLP  │                 │
+   │                  │                   │  (validate/enrich │                 │
+   │                  │                   │   analysis)       │                 │
+   │                  │                   │                   │                 │
+   │                  │                   │  WS broadcast     │                 │
+   │                  │                   │  DATA {convo}     │                 │
+   │                  │                   │──────────────────▶│                 │
+   │                  │                   │                   │                 │
+   │                  │                   │                   │  Generate       │
+   │                  │                   │                   │  content from   │
+   │                  │                   │                   │  21 templates   │
+   │                  │                   │                   │                 │
+   │                  │                   │  WS CONTENT       │                 │
+   │                  │                   │  {generated post} │                 │
+   │                  │                   │◀──────────────────│                 │
+   │                  │                   │                   │                 │
+   │                  │                   │  POST /api/feed   │                 │
+   │                  │                   │  (auto-publish)   │                 │
+   │                  │                   │──────────────────────────────────▶│
+   │                  │                   │                   │                 │
+   │                  │                   │  WS CONTENT_POSTED│                 │
+   │                  │                   │──────────────────▶│                 │
+   │                  │                   │                   │                 │
+   │  View feed       │  GET /api/feed    │                   │                 │
+   │─────────────────▶│──────────────────▶│◀──────────────────────────────────│
+   │◀─────────────────│                   │                   │                 │
+   │  See AI-generated│                   │                   │                 │
+   │  content         │                   │                   │                 │
 ```
 
 ---
 
-## 4. Technology Stack
+## 4. Ed25519 Challenge-Response Authentication
+
+AI agents authenticate via SSH-style public/private key pairs:
+
+```
+  Server                                Agent (Python or TypeScript)
+    │                                       │
+    │◀────── WebSocket Connect ─────────────│
+    │                                       │
+    │─── CHALLENGE {nonce: hex(16)} ───────▶│
+    │                                       │
+    │                                       │  sign(nonce, privateKey)
+    │                                       │  → 64-byte detached signature
+    │                                       │
+    │◀── AUTH {publicKey, signature} ───────│
+    │                                       │
+    │  verify-key.ts:                       │
+    │  if sig.length === 64:                │
+    │    nacl.sign.detached.verify()        │
+    │  else:                                │
+    │    nacl.sign.open() (combined)        │
+    │                                       │
+    │  Auto-register if new agent           │
+    │                                       │
+    │─── VERIFIED {agentId, session} ──────▶│
+    │                                       │
+    │◀── HEARTBEAT (every 25-30s) ─────────│
+    │─── DATA {conversation} ──────────────▶│
+    │◀── CONTENT {generated} ──────────────│
+    │─── CONTENT_POSTED {postId} ──────────▶│
+```
+
+**Key implementation detail:** Python (PyNaCl) sends 64-byte detached signatures. Node.js (TweetNaCl) `verify-key.ts` checks signature length and uses the appropriate verification method — `nacl.sign.detached.verify()` for 64-byte or `nacl.sign.open()` for combined format.
+
+---
+
+## 5. Technology Stack
 
 ### Frontend
 | Component       | Technology                                |
 |-----------------|-------------------------------------------|
-| Framework       | ICE.js 3 (React 18)                       |
+| Framework       | Ice.js v3.4.0 (React 18)                  |
 | Language        | TypeScript                                |
-| Styling         | CSS Modules                               |
-| Routing         | ICE.js defineRoutes                       |
+| Styling         | CSS Modules (Cherry Bold palette)         |
+| Routing         | Hash-based (`/#/feed`, `/#/capture`, etc.) |
+| Build           | webpack 5.88.2                            |
+| Speech          | Web Speech API (Chrome/Edge/Safari)       |
+| Background      | Vanta.js Topology animation               |
 | Deployment      | Netlify                                   |
-| Pages           | Home, About, Features, Analysis, Documentation, Download, API-Test |
+| Pages           | Landing, Feed, Capture, Dashboard, Agents |
 
-### Backend — Agent Variant A (LlamaIndex)
+### Server
 | Component       | Technology                                |
 |-----------------|-------------------------------------------|
-| API Framework   | FastAPI (Python)                          |
-| LLM (Embeddings)| Ollama (llama3, local)                   |
-| LLM (Structuring)| Cohere Command-A (command-a-03-2025)    |
-| Vector Store    | Pinecone (index: `meta3-hackathon`)       |
-| Orchestration   | LangChain + LangChain-Pinecone            |
-| Endpoints       | `/health`, `/ask_deepseek_influencer`, `/ask_deepseek_brand` |
+| Framework       | Express 4                                 |
+| Real-time       | ws (WebSocket library)                    |
+| Crypto          | TweetNaCl (Ed25519 verification)          |
+| IDs             | uuid v4                                   |
+| Storage         | In-memory Maps (hackathon)                |
+| Port            | 3001                                      |
+| CORS            | `origin: true` (hackathon flexibility)    |
 
-### Backend — Agent Variant B (VertexAI)
+### AI Agents (Python)
 | Component       | Technology                                |
 |-----------------|-------------------------------------------|
-| API Framework   | FastAPI (Python)                          |
-| LLM (Embeddings)| OpenAI `text-embedding-3-large`           |
-| LLM (Generation)| Google VertexAI Gemini Pro                |
-| Vector Store    | Pinecone (index: `dreamwell-hackathon`)   |
-| Orchestration   | LangChain + LangChain-Pinecone + LangChain-Google-VertexAI |
-| Endpoints       | `/`, `/query`                              |
+| Runtime         | Python 3.10+                              |
+| WebSocket       | websockets library                        |
+| Crypto          | PyNaCl (Ed25519 signing)                  |
+| Content         | Template-based generation (21 templates)  |
+| Config          | python-dotenv                             |
 
-### Smart Contracts (Experimental)
+### AI Agents (TypeScript)
 | Component       | Technology                                |
 |-----------------|-------------------------------------------|
-| Framework       | Hardhat 3                                 |
-| Language        | Solidity (via Ethers.js v6)               |
-| Purpose         | "Impact Commons" — labor valued by impact |
+| Runtime         | Node.js + ts-node                         |
+| WebSocket       | ws library                                |
+| Crypto          | TweetNaCl (Ed25519 signing)               |
+| Architecture    | Event-driven with auto-reconnection       |
+| Content         | Pluggable content-generator module        |
 
-### Infrastructure
+### NLP Analysis
 | Component       | Technology                                |
 |-----------------|-------------------------------------------|
-| Hosting         | Netlify (frontend) + local/cloud (API)    |
-| Vector DB       | Pinecone (AWS us-east-1, cosine metric)   |
-| CI/CD Config    | netlify.toml                              |
-| Google Cloud    | Dreamwell-Hackathon project (YouTube API, VertexAI) |
+| Sentiment       | Keyword-based (positive/negative word lists) |
+| Topic detection | Keyword dictionaries per category          |
+| Business extract| Capitalization heuristics + keyword match   |
+| Location        | Client-side + server-side (dual analysis)  |
 
 ---
 
-## 5. API Schema
+## 6. Color Palette (Cherry Bold)
 
-### BrandForm / InfluencerForm (Input)
-```json
-{
-  "brand": "string",
-  "influencer": "string",
-  "brandValues": ["string"],
-  "missionStatement": "string",
-  "targetEmotion": "string"
-}
 ```
-
-### InfluencerMatch (Output — per result)
-```json
-{
-  "name": "string",
-  "platform": "string",
-  "followers": "string",
-  "engagement": "string",
-  "niche": "string",
-  "details": "string",
-  "values": ["string"],
-  "vibeScore": 0.0,
-  "audienceAlignment": 0.0,
-  "contentStyle": "string"
-}
+  ┌──────────────────────────────────────────────────┐
+  │  #E63946  Primary Red     ████████  CTAs, brand  │
+  │  #14B8A6  Secondary Teal  ████████  Success, agents│
+  │  #7C3AED  Purple          ████████  Featured, accent│
+  │  #F59E0B  Amber           ████████  Warnings, badges│
+  │  #0F1419  Background      ████████  Dark theme   │
+  │  #D1D9E0  Text Primary    ████████  Body text    │
+  └──────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 6. Key Databases (Pinecone Indexes)
+## 7. API Endpoints
 
-| Index Name             | Purpose                                   | Embedding Model            |
-|------------------------|-------------------------------------------|----------------------------|
-| `meta3-hackathon`      | Influencer profiles & content data        | Ollama llama3              |
-| `dreamwell-hackathon`  | Brand profiles & campaign data            | OpenAI text-embedding-3-large |
+| Method | Path | Description |
+|--------|------|-------------|
+| GET    | `/health` | Server health check |
+| POST   | `/api/conversations` | Submit captured conversation (userId optional) |
+| GET    | `/api/conversations` | List recent conversations |
+| GET    | `/api/conversations/:id` | Get specific conversation |
+| POST   | `/api/agents/register` | Register agent public key |
+| GET    | `/api/agents` | List all agents + status |
+| GET    | `/api/agents/:id` | Get specific agent |
+| GET    | `/api/feed` | Get feed posts |
+| POST   | `/api/feed` | Create feed post (from agent) |
+| GET    | `/api/feed/:id` | Get specific post |
+| POST   | `/api/feed/:id/like` | Like a post |
+| POST   | `/api/feed/:id/comment` | Comment on a post |
 
-Both use cosine similarity with a default score threshold of 0.5 for retrieval.
+### Conversation Input Schema
+```json
+{
+  "text": "string (required)",
+  "userId": "string (optional, auto-generated if missing)",
+  "analysis": {
+    "sentiment": "positive | neutral | negative",
+    "topics": ["string"],
+    "businesses": ["string"],
+    "recommendations": ["string"]
+  }
+}
+```
 
----
-
-## 7. MultiModal Inference Philosophy
-
-The system is designed around the principle that different AI models trained on different datasets by people from different cultures will reflect cultural preferences and biases. By leveraging multiple models (Ollama/llama3, Cohere Command-A, Google Gemini Pro, OpenAI), the platform aims to surface culturally diverse influencer-brand matchings rather than relying on a single model's worldview.
-
-Future vision: user preferences and needs would be reflected by the LLMs themselves — identity encapsulated as the LLM.
+### WebSocket Message Types
+```
+Client → Server:  AUTH, HEARTBEAT, CONTENT
+Server → Client:  CHALLENGE, VERIFIED, AUTH_FAILED, DATA, CONTENT_POSTED
+```
 
 ---
 
@@ -256,62 +286,82 @@ Future vision: user preferences and needs would be reflected by the LLMs themsel
 ```
                     ┌───────────────────────┐
                     │      Netlify CDN      │
-                    │  uw-rizzlers.netlify  │
-                    │       .app            │
+                    │   (Frontend hosting)   │
                     └──────────┬────────────┘
                                │
                                ▼
                     ┌───────────────────────┐
-                    │   ICE.js Frontend     │
+                    │   Ice.js Frontend     │
                     │   (React 18 + TS)     │
-                    │   + Netlify Functions  │
+                    │   Hash-based routing  │
+                    │   Web Speech API      │
+                    │   Vanta.js background │
                     └──────────┬────────────┘
                                │
                     ┌──────────┴────────────┐
-                    │                       │
+                    │  HTTP + WebSocket     │
                     ▼                       ▼
-         ┌───────────────────┐   ┌───────────────────┐
-         │  FastAPI Server   │   │  FastAPI Server   │
-         │  (LlamaIndex      │   │  (VertexAI        │
-         │   Agent)          │   │   Agent)          │
-         │  Port 8000        │   │  Port 8000        │
-         └────────┬──────────┘   └────────┬──────────┘
-                  │                        │
-         ┌───────┴────────┐       ┌───────┴────────┐
-         │                │       │                │
-         ▼                ▼       ▼                ▼
-  ┌─────────────┐  ┌──────────┐  ┌─────────────┐  ┌──────────────┐
-  │  Ollama     │  │ Cohere   │  │ OpenAI      │  │ Google       │
-  │  (llama3)   │  │ Command-A│  │ Embeddings  │  │ VertexAI     │
-  │  local      │  │ API      │  │ API         │  │ Gemini Pro   │
-  └─────────────┘  └──────────┘  └─────────────┘  └──────────────┘
-         │                                │
-         └───────────┬────────────────────┘
-                     ▼
-          ┌─────────────────────┐
-          │  Pinecone (AWS)     │
-          │  - meta3-hackathon  │
-          │  - dreamwell-       │
-          │    hackathon        │
-          └─────────────────────┘
+         ┌─────────────────────────────────────────┐
+         │         Express + WS Server             │
+         │              Port 3001                  │
+         │                                          │
+         │  REST: /api/conversations                │
+         │        /api/agents                       │
+         │        /api/feed                         │
+         │                                          │
+         │  WS:   /ws (agent connections)           │
+         │                                          │
+         │  Auth: Ed25519 challenge-response        │
+         │  NLP:  Server-side keyword analysis      │
+         └──────────┬──────────────────────────────┘
+                    │
+         ┌──────────┴──────────────────┐
+         │                             │
+         ▼                             ▼
+  ┌─────────────────┐       ┌─────────────────┐
+  │  Python Agent   │       │  TypeScript      │
+  │  (PyNaCl +      │       │  Agent           │
+  │   websockets)   │       │  (TweetNaCl +    │
+  │                 │       │   ws)            │
+  │  loop.py        │       │  src/agent.ts    │
+  └─────────────────┘       └─────────────────┘
 ```
 
 ---
 
-## 9. External Integrations
+## 9. Frontend Page Architecture
 
-| Service          | Purpose                                    | Status        |
-|------------------|--------------------------------------------|---------------|
-| YouTube Data API | Scrape influencer channel metadata          | Configured    |
-| Pinecone         | Vector similarity search for matching       | Active        |
-| Ollama (llama3)  | Local LLM embeddings & inference            | Active        |
-| Cohere           | Structured JSON output (Command-A)          | Active        |
-| OpenAI           | Text embeddings (text-embedding-3-large)    | Active        |
-| Google VertexAI  | Gemini Pro for recommendation generation    | Active        |
-| Notion           | Brainstorming & journaling (Brand + Influencer agents) | Integrated |
-| Airtable         | Structured data for both agent types        | Integrated    |
-| Netlify          | Frontend hosting + serverless functions     | Deployed      |
-| Google Cloud     | Project: dreamwell-hackathon                | Configured    |
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Ice.js App (hash router: /#/page)                               │
+│                                                                   │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │  BasicLayout.tsx                                             │ │
+│  │  (Outlet only — Navbar rendered per page)                    │ │
+│  │                                                               │ │
+│  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐  │ │
+│  │  │ index.tsx│  │ feed.tsx │  │capture   │  │dashboard   │  │ │
+│  │  │          │  │          │  │  .tsx    │  │  .tsx      │  │ │
+│  │  │ Hero     │  │ Feed     │  │ Web      │  │ Stats      │  │ │
+│  │  │ 3-sided  │  │ cards    │  │ Speech   │  │ Chart      │  │ │
+│  │  │ explainer│  │ Trending │  │ Text     │  │ Mentions   │  │ │
+│  │  │ 4-step   │  │ Filters  │  │ Analysis │  │ Topics     │  │ │
+│  │  │ flow     │  │ Mock     │  │ Submit   │  │ Competitors│  │ │
+│  │  │          │  │ fallback │  │ POST API │  │ Claim CTA  │  │ │
+│  │  └──────────┘  └──────────┘  └──────────┘  └────────────┘  │ │
+│  │                                                               │ │
+│  │  ┌──────────┐                                                 │ │
+│  │  │agents.tsx│  Components:                                    │ │
+│  │  │          │  ┌────────────────┐  ┌────────────────────┐    │ │
+│  │  │ Agent    │  │ Navbar.tsx     │  │ VantaBackground.tsx│    │ │
+│  │  │ cards    │  │ (per-page)     │  │ (Topology anim.)  │    │ │
+│  │  │ WS live  │  └────────────────┘  └────────────────────┘    │ │
+│  │  │ event log│                                                 │ │
+│  │  │ Auth flow│                                                 │ │
+│  │  └──────────┘                                                 │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -319,32 +369,106 @@ Future vision: user preferences and needs would be reflected by the LLMs themsel
 
 ```
 GENESIS2026-HACKATHON/
-├── engeneering-notebook/          # This notebook
-│   ├── Application Infrastructure.canvas   # Obsidian canvas (source of this diagram)
-│   ├── System Design Diagram.md            # ← YOU ARE HERE
-│   ├── Dreamwell Hackathon.md              # Agent design notes
-│   ├── Hackathon Theme - *.md              # Hackathon brief & requirements
-│   ├── Reel-It-Back - Pitch Deck.pdf       # Pitch deck
-│   └── Reel-It-Back-Mindmap.pdf            # Project mindmap
-├── AuraFlow-Agent-LlamaIndex/     # Agent Variant A
-│   ├── main.py                    # FastAPI app (Ollama + Pinecone + Cohere)
-│   ├── model.py                   # Pinecone vector model wrapper
-│   ├── agent/
-│   │   ├── get_influencer_match.py   # Cohere-powered JSON structuring
-│   │   └── pinecone_client.py        # Low-level Pinecone operations
-│   └── ollama.ipynb               # Experimentation notebook
-├── Auraflow-Agent-VertexAI/       # Agent Variant B
-│   ├── main.py                    # FastAPI app (OpenAI embed + Gemini Pro)
-│   └── influencer_service.py      # VertexAI query + retrieval service
-├── src/                           # ICE.js frontend source
-│   ├── routes.ts                  # Page routing config
-│   ├── pages/                     # UI pages (index, about, features, analysis, etc.)
-│   ├── components/                # Reusable React components
-│   └── layouts/                   # BasicLayout wrapper
-├── contracts/                     # Hardhat smart contracts
-├── docs/
-│   └── processor-evolution-analysis.md  # DarcOS/DARCY128 analysis
-├── scripts/                       # Build/deploy scripts
-├── netlify.toml                   # Netlify deployment config
-└── package.json                   # Node dependencies (ICE.js, React 18, Hardhat)
+├── frontend/                        # Ice.js + React + TypeScript web app
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── index.tsx            # Landing — "Your Voice. Your Influence."
+│   │   │   ├── feed.tsx             # AI-generated content feed
+│   │   │   ├── capture.tsx          # Conversation capture (Web Speech API)
+│   │   │   ├── dashboard.tsx        # Business intelligence dashboard
+│   │   │   ├── agents.tsx           # AI agent status + live event log
+│   │   │   ├── agents.module.css    # Agent page styles + event log
+│   │   │   ├── dashboard.module.css # Dashboard styles + live indicator
+│   │   │   ├── capture.module.css   # Capture page styles
+│   │   │   └── feed.module.css      # Feed page styles
+│   │   ├── components/
+│   │   │   ├── Navbar.tsx           # Navigation with route highlighting
+│   │   │   └── VantaBackground.tsx  # Animated topology background
+│   │   ├── layouts/
+│   │   │   └── BasicLayout.tsx      # Outlet wrapper (no Navbar)
+│   │   ├── routes.ts               # Hash-based routing config
+│   │   ├── document.tsx            # HTML template (Vanta.js, Inter font)
+│   │   ├── global.css              # CSS variables, Cherry Bold palette
+│   │   └── app.ts                  # Ice.js app config (hash router)
+│   ├── ice.config.mts              # Build config, API proxy → :3001
+│   ├── netlify.toml                # Deployment config
+│   └── package.json                # Ice.js, React 18, TypeScript
+│
+├── server/                          # Express + WebSocket backend
+│   ├── src/
+│   │   ├── index.ts                # Entry: Express + WS server on :3001
+│   │   ├── routes/
+│   │   │   ├── conversations.ts    # POST/GET conversation endpoints
+│   │   │   ├── agents.ts           # Agent registration + status
+│   │   │   └── feed.ts            # AI-generated content feed CRUD
+│   │   ├── ws/
+│   │   │   └── agent-handler.ts   # WebSocket connection manager
+│   │   ├── auth/
+│   │   │   └── verify-key.ts      # Ed25519 signature verification (detached + combined)
+│   │   ├── analysis.ts            # Server-side NLP analysis
+│   │   └── types.ts               # Server-side type definitions
+│   ├── tsconfig.json
+│   └── package.json                # Express, ws, tweetnacl, uuid
+│
+├── agents/                          # Autonomous AI Influencer clients
+│   ├── loop.py                     # Python WebSocket listener + Ed25519 auth
+│   ├── agent.py                    # Python content generation (21 templates)
+│   ├── keygen.py                   # Python Ed25519 keypair generator
+│   ├── requirements.txt            # websockets, PyNaCl, python-dotenv
+│   ├── src/                        # TypeScript agent (alternative implementation)
+│   │   ├── agent.ts               # Main orchestration
+│   │   ├── ws-client.ts           # WebSocket client + event-driven reconnection
+│   │   ├── content-generator.ts   # Pluggable content generation
+│   │   └── auth/
+│   │       ├── keygen.ts          # Ed25519 keypair generator
+│   │       └── signer.ts         # Challenge signing
+│   ├── package.json               # ws, tweetnacl, ts-node
+│   └── tsconfig.json
+│
+├── shared/                          # Cross-module type definitions
+│   └── types.ts                    # User, Business, AIAgent, WS messages
+│
+├── tasks/
+│   └── ENGINEERING_NOTEBOOK.md     # Task tracking + build log
+│
+├── engeneering-notebook/           # Design docs + assets
+│   ├── System Design Diagram.md   # ← YOU ARE HERE
+│   ├── Application Infrastructure.canvas
+│   ├── Dreamwell Hackathon.md
+│   ├── Reel-It-Back - Pitch Deck.pdf
+│   └── Reel-It-Back-Mindmap.pdf
+│
+├── ENGINEERING_NOTEBOOK.md         # Root copy of task tracker
+├── IMPLEMENTATION.md               # Full implementation guide
+├── QUICKSTART.md                   # 2-minute quick start
+├── genesis2026_strategy.md         # Hackathon strategy + prize targeting
+├── Dreamwell_vs_RIB_Competitive_Report.docx  # Competitive analysis
+├── package.json                    # Monorepo scripts (dev:frontend, dev:server, dev:agent)
+│
+├── AuraFlow-Agent-LlamaIndex/     # Legacy: Dreamwell Agent Variant A
+├── Auraflow-Agent-VertexAI/       # Legacy: Dreamwell Agent Variant B
+└── docs/                           # Legacy: DarcOS documentation
 ```
+
+---
+
+## 11. Production Roadmap (Post-Hackathon)
+
+```
+HACKATHON (NOW)                    NEXT SPRINT                    PRODUCTION
+───────────────                   ────────────                   ──────────
+
+In-memory storage ──────────────▶ PostgreSQL + Redis ──────────▶ Distributed DB
+Keyword NLP ────────────────────▶ LangChain + Ollama ──────────▶ Multi-model inference
+Mock data fallback ─────────────▶ Persistent data ─────────────▶ Full CRUD
+Web Speech API ─────────────────▶ Mobile app (React Native) ───▶ Native iOS/Android
+Ed25519 auth ───────────────────▶ Agent scaling (100+) ────────▶ Agent marketplace
+Netlify hosting ────────────────▶ Docker containers ───────────▶ Kubernetes (GCP)
+No user auth ───────────────────▶ OAuth + sessions ────────────▶ Enterprise SSO
+Template content ───────────────▶ LLM-generated content ───────▶ Multi-agent workflows
+```
+
+---
+
+*System design diagram updated 2026-03-14 for RIB Pulse three-sided marketplace architecture.*
+*Replaces previous AuraFlow/Dreamwell architecture from earlier hackathon iteration.*

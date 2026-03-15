@@ -1,4 +1,3 @@
-import logo from '@/assets/logo.png';
 import VantaBackground from '@/components/VantaBackground';
 import Navbar from '@/components/Navbar';
 import styles from '@/styles/index.module.css';
@@ -10,146 +9,103 @@ export default function IndexPage() {
       <VantaBackground />
       <div className={styles.app}>
         <header className={styles.hero}>
-          <img src={logo} alt="Impact Commons logo" className={styles.logo} />
-          <h1 className={styles.title}>Impact Commons</h1>
-          <p className={styles.acronym}>Labor valued by impact. Not by money.</p>
-          <p className={styles.tagline}>A new economic layer where solving real human and ecological needs—not maximizing profit—drives recognition, access, and influence.</p>
+          <h1 className={styles.title}>Your Voice. Your Influence. Zero Effort.</h1>
+          <p className={styles.tagline}>RIB-AuraFlow is the intelligence layer that connects influencers, brands, and users — creating its own AI influencers that never sleep. Capture conversations. Generate content. Build influence. All autonomously.</p>
           <div className={styles.ctaRow}>
-            <a className={styles.primaryCta} href="#about">Join the Movement</a>
-            <a className={styles.secondaryCta} href="#how-it-works">Explore the Protocol</a>
+            <a className={styles.primaryCta} href="#/capture">Start Capturing</a>
+            <a className={styles.secondaryCta} href="#/feed">Explore Feed</a>
           </div>
         </header>
 
         <main className={styles.main}>
-          <section id="about" className={styles.section}>
-            <h2 className={styles.sectionTitle}>The Problem</h2>
-            <p className={styles.sectionLead}>
-              <strong>Today, markets decide what matters.</strong> If you can't pay, your problem is invisible.
-              Just because a problem is profitable doesn't mean it's more worth solving. True value lies in
-              impact—not income.
-            </p>
-            <p className={styles.sectionLead}>
-              Our current economic system values labor based on profit potential, not social impact. This leaves
-              critical human and ecological needs—clean water access, mental health support, ecosystem
-              restoration, care work—systematically undervalued and underfunded. The most profitable problems
-              aren't necessarily the most urgent ones humanity faces.
-            </p>
-            <p className={styles.sectionLead}>
-              <strong>Impact Commons</strong> is a Web3-native protocol that replaces profit-driven incentives with
-              verified social impact as the basis for recognizing labor and allocating resources. We're building
-              an economic layer where solving real problems—not maximizing shareholder returns—drives influence,
-              access, and recognition.
-            </p>
-          </section>
-
-          <section id="how-it-works" className={styles.section}>
-            <h2 className={styles.sectionTitle}>How It Works</h2>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>The Intelligence Layer</h2>
             <div className={styles.cards}>
               <div className={styles.card}>
-                <h3>1. Verify a Need</h3>
+                <h3>Users / Influencers 🎤</h3>
                 <p>
-                  Communities co-attest real problems using decentralized verification. For example:
-                  "Clean water access in Village X" or "Mental health support for community Y."
-                  Needs are validated through collective attestation, not market demand.
+                  Talk naturally — voice or text. Your everyday conversations about local businesses, products, and experiences become the fuel for an intelligence engine. Zero content creation effort. Your words carry weight.
                 </p>
               </div>
               <div className={styles.card}>
-                <h3>2. Anonymous Undertaking</h3>
+                <h3>Brands / Businesses 📊</h3>
                 <p>
-                  Anyone can propose solutions with their identity hidden and intent verified.
-                  This prevents bias and ensures that ideas are judged on merit and potential impact,
-                  not on who proposes them.
+                  Discover your brand presence built organically from real consumer conversations. Unlock sentiment trends, competitive insights, and AI-generated content about your business — without ever signing up.
                 </p>
               </div>
               <div className={styles.card}>
-                <h3>3. Impact Validation</h3>
+                <h3>AI Influencers 🤖</h3>
                 <p>
-                  Beneficiaries privately rate the actual value delivered. Only the average impact score
-                  is made public. No extortion. No bias. Real impact verified by those who experience it.
-                </p>
-              </div>
-              <div className={styles.card}>
-                <h3>Privacy-First Design</h3>
-                <p>
-                  Built with zero-knowledge proofs and privacy-preserving cryptography. Personal data
-                  stays private while enabling collective verification of impact.
-                </p>
-              </div>
-              <div className={styles.card}>
-                <h3>Community Governance</h3>
-                <p>
-                  Decentralized and community-governed through transparent on-chain coordination.
-                  No central authority decides what matters—communities do.
-                </p>
-              </div>
-              <div className={styles.card}>
-                <h3>Open Source</h3>
-                <p>
-                  Fully transparent, auditable, and forkable. Built on Ethereum Attestation Service,
-                  MACI, and Semaphore for verifiable trust without centralized control.
+                  Autonomous agents authenticated via Ed25519 cryptography. They listen to conversation streams via WebSocket, generate publishable social content 24/7, and bridge the gap between consumers and businesses.
                 </p>
               </div>
             </div>
           </section>
 
-          <section id="tech-stack" className={styles.section}>
-            <h2 className={styles.sectionTitle}>Built on Web3</h2>
-            <div className={styles.downloadGrid}>
-              <div className={styles.downloadCard}>
-                <h3>Ethereum Attestation Service</h3>
-                <p>Verifiable on-chain attestations for needs, solutions, and impact validation</p>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>How RIB-AuraFlow Works</h2>
+            <div className={styles.flowContainer}>
+              <div className={styles.flowStep}>
+                <div className={styles.stepNumber}>1</div>
+                <h3>Capture</h3>
+                <p>Voice or text conversations captured via Web Speech API. Real-time transcription.</p>
               </div>
-              <div className={styles.downloadCard}>
-                <h3>MACI (Minimal Anti-Collusion Infrastructure)</h3>
-                <p>Privacy-preserving voting and coordination resistant to bribery and coercion</p>
+              <div className={styles.flowArrow}>→</div>
+              <div className={styles.flowStep}>
+                <div className={styles.stepNumber}>2</div>
+                <h3>Analyze</h3>
+                <p>NLP extracts sentiment, topics, business mentions, and recommendations.</p>
               </div>
-              <div className={styles.downloadCard}>
-                <h3>Semaphore & Zero-Knowledge Proofs</h3>
-                <p>Anonymous identity verification and private impact ratings without exposing personal data</p>
+              <div className={styles.flowArrow}>→</div>
+              <div className={styles.flowStep}>
+                <div className={styles.stepNumber}>3</div>
+                <h3>Generate</h3>
+                <p>AI agents create authentic posts, reviews, and trending content automatically.</p>
               </div>
-            </div>
-          </section>
-
-          <section id="philosophy" className={styles.section}>
-            <h2 className={styles.sectionTitle}>Core Philosophy</h2>
-            <div className={styles.testimonials}>
-              <div className={styles.testimonial}>
-                <p>"Philanthropy isn't charity—it's investment in shared resilience. When we value labor by its impact rather than its profit potential, we build economies that serve human and ecological needs."</p>
-              </div>
-              <div className={styles.testimonial}>
-                <p>"Non-monetary returns create lasting value. Recognition, access, and influence earned through verified impact are more meaningful than wealth extracted from scarcity."</p>
-              </div>
-              <div className={styles.testimonial}>
-                <p>"Labor is care. The work that sustains communities, heals ecosystems, and supports human flourishing deserves recognition—not because it's profitable, but because it matters."</p>
+              <div className={styles.flowArrow}>→</div>
+              <div className={styles.flowStep}>
+                <div className={styles.stepNumber}>4</div>
+                <h3>Connect</h3>
+                <p>Influencers matched to brands. Businesses discover organic profiles. The flywheel spins.</p>
               </div>
             </div>
           </section>
 
-          <section id="join" className={styles.section}>
-            <h2 className={styles.sectionTitle}>Join the Movement</h2>
-            <div className={styles.resourceLinks}>
-              <div className={styles.resourceCard}>
-                <h3>Build with Us</h3>
-                <p>Developers: Contribute to the open-source protocol and help build the impact economy</p>
-                <a href="https://github.com/impact-commons" target="_blank" rel="noopener noreferrer" className={styles.resourceBtn}>
-                  View on GitHub
-                </a>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>The AuraFlow Intelligence Engine</h2>
+            <div className={styles.cards}>
+              <div className={styles.card}>
+                <h3>Influencer-Brand Matching</h3>
+                <p>
+                  Semantic intelligence connects the right voices to the right brands. Our matching engine uses conversation context, sentiment signals, and topic alignment to create authentic influencer-brand partnerships.
+                </p>
               </div>
-              <div className={styles.resourceCard}>
-                <h3>Join a Pilot Community</h3>
-                <p>For cooperatives, DAOs, and regenerative communities ready to experiment with impact-based coordination</p>
-                <a href="#contact" className={styles.resourceBtn}>
-                  Get Involved
-                </a>
+              <div className={styles.card}>
+                <h3>Autonomous AI Agents</h3>
+                <p>
+                  SSH-style Ed25519 authentication. WebSocket real-time streams. 21+ content templates. Agents connect, authenticate with a cryptographic challenge-response, and generate content around the clock.
+                </p>
               </div>
-              <div className={styles.resourceCard}>
-                <h3>Stay Updated</h3>
-                <p>Subscribe to our newsletter for updates on the impact economy and protocol development</p>
-                <a href="#newsletter" className={styles.resourceBtn}>
-                  Subscribe
-                </a>
+              <div className={styles.card}>
+                <h3>Cold-Start Solution</h3>
+                <p>
+                  Traditional marketplaces die because all sides must arrive simultaneously. Our AI agent layer creates synthetic supply from real demand — making the platform valuable from day one.
+                </p>
               </div>
             </div>
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Built for GenAI Genesis 2026</h2>
+            <div className={styles.badgeContainer}>
+              <div className={styles.badge}>
+                <span className={styles.badgeIcon}>✨</span>
+                <span className={styles.badgeText}>GenAI Genesis 2026 — UofT Hackathon</span>
+              </div>
+            </div>
+            <p className={styles.sectionDesc}>
+              The intelligence layer that creates its own influencers. Powered by Ed25519 cryptography, WebSocket real-time streaming, and autonomous AI agents that never sleep. By Reel It Back.
+            </p>
           </section>
         </main>
       </div>

@@ -9,7 +9,7 @@ export default function Document() {
     <html>
       <head>
         <meta charSet="utf-8" />
-        <meta name="description" content={description || 'Impact Commons - A Web3 platform where labor is valued by verified social impact, not profit'} />
+        <meta name="description" content={description || 'RIB-AuraFlow - Conversation Intelligence Marketplace powered by AI agents'} />
         <meta name="theme-color" content="#00131a" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -21,7 +21,7 @@ export default function Document() {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" />
         <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.topology.min.js" />
         <Meta />
-        <Title>Impact Commons — Labor valued by impact, not by money</Title>
+        <Title>RIB-AuraFlow — Conversation Intelligence Marketplace</Title>
         <Links />
       </head>
       <body>

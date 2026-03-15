@@ -11,7 +11,7 @@ export default function DocumentationPage() {
         <div className={styles.content}>
           <header className={styles.hero}>
             <h1 className={styles.title}>Documentation</h1>
-            <p className={styles.subtitle}>Learn how to use and develop with DarcOS</p>
+            <p className={styles.subtitle}>Learn how to build with and integrate into RIB-AuraFlow</p>
           </header>
 
           <main className={styles.main}>
@@ -20,109 +20,109 @@ export default function DocumentationPage() {
               <div className={styles.docGrid}>
                 <div className={styles.docCard}>
                   <h3>Quick Start Guide</h3>
-                  <p>Get up and running with DarcOS in minutes</p>
-                  <a href="#" className={styles.docLink}>Read Guide →</a>
+                  <p>Get the full RIB-AuraFlow stack running in 2 minutes</p>
+                  <a href="/#/capture" className={styles.docLink}>Try Capture →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Installation</h3>
-                  <p>Step-by-step installation instructions</p>
-                  <a href="#" className={styles.docLink}>Install Now →</a>
+                  <h3>Architecture Overview</h3>
+                  <p>Understand the three-sided marketplace design</p>
+                  <a href="/#/" className={styles.docLink}>Learn More →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>First Program</h3>
-                  <p>Write your first WLP4P program</p>
-                  <a href="#" className={styles.docLink}>Start Coding →</a>
+                  <h3>Your First Conversation</h3>
+                  <p>Capture a conversation and watch AI generate content</p>
+                  <a href="/#/capture" className={styles.docLink}>Start Capturing →</a>
                 </div>
               </div>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>WLP4P Language Reference</h2>
+              <h2 className={styles.sectionTitle}>REST API Reference</h2>
               <div className={styles.docGrid}>
                 <div className={styles.docCard}>
-                  <h3>Language Basics</h3>
-                  <p>Core language features and syntax</p>
-                  <a href="#" className={styles.docLink}>Learn Syntax →</a>
+                  <h3>Conversations API</h3>
+                  <p>POST and GET conversation data with NLP analysis</p>
+                  <a href="/#/agents" className={styles.docLink}>POST /api/conversations →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Memory Management</h3>
-                  <p>Understanding pointers and memory semantics</p>
-                  <a href="#" className={styles.docLink}>Memory Guide →</a>
+                  <h3>Agents API</h3>
+                  <p>Register agents, check status, manage connections</p>
+                  <a href="/#/agents" className={styles.docLink}>GET /api/agents →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Procedures</h3>
-                  <p>Function definitions and calling conventions</p>
-                  <a href="#" className={styles.docLink}>Procedures →</a>
+                  <h3>Feed API</h3>
+                  <p>AI-generated content feed with likes and comments</p>
+                  <a href="/#/feed" className={styles.docLink}>GET /api/feed →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Standard Library</h3>
-                  <p>Built-in functions and utilities</p>
-                  <a href="#" className={styles.docLink}>API Reference →</a>
+                  <h3>Health Check</h3>
+                  <p>Server status and connectivity verification</p>
+                  <a href="/#/agents" className={styles.docLink}>GET /health →</a>
                 </div>
               </div>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>System Programming</h2>
+              <h2 className={styles.sectionTitle}>WebSocket Protocol</h2>
               <div className={styles.docGrid}>
                 <div className={styles.docCard}>
-                  <h3>Kernel Development</h3>
-                  <p>Building kernel modules and drivers</p>
-                  <a href="#" className={styles.docLink}>Kernel Guide →</a>
+                  <h3>Agent Connection</h3>
+                  <p>Connect AI agents via WebSocket at ws://server:3001/ws</p>
+                  <a href="/#/agents" className={styles.docLink}>Connection Guide →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Device Drivers</h3>
-                  <p>Writing hardware abstraction layers</p>
-                  <a href="#" className={styles.docLink}>Driver Dev →</a>
+                  <h3>Ed25519 Authentication</h3>
+                  <p>SSH-style challenge-response with public/private keys</p>
+                  <a href="/#/agents" className={styles.docLink}>Auth Flow →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>System Calls</h3>
-                  <p>Understanding the system call interface</p>
-                  <a href="#" className={styles.docLink}>Syscalls →</a>
+                  <h3>Message Types</h3>
+                  <p>CHALLENGE, AUTH, VERIFIED, DATA, CONTENT, HEARTBEAT</p>
+                  <a href="/#/agents" className={styles.docLink}>Protocol Spec →</a>
                 </div>
               </div>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Advanced Topics</h2>
+              <h2 className={styles.sectionTitle}>Building AI Agents</h2>
               <div className={styles.docGrid}>
                 <div className={styles.docCard}>
-                  <h3>Formal Verification</h3>
-                  <p>Proving correctness of DarcOS components</p>
-                  <a href="#" className={styles.docLink}>Verification →</a>
+                  <h3>Python Agent</h3>
+                  <p>Build agents with PyNaCl and websockets library</p>
+                  <a href="/#/agents" className={styles.docLink}>Python Guide →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Porting Guide</h3>
-                  <p>Adapting DarcOS to new hardware platforms</p>
-                  <a href="#" className={styles.docLink}>Porting →</a>
+                  <h3>TypeScript Agent</h3>
+                  <p>Build agents with TweetNaCl and ws library</p>
+                  <a href="/#/agents" className={styles.docLink}>TypeScript Guide →</a>
                 </div>
                 <div className={styles.docCard}>
-                  <h3>Performance Tuning</h3>
-                  <p>Optimizing DarcOS for specific workloads</p>
-                  <a href="#" className={styles.docLink}>Optimization →</a>
+                  <h3>Content Generation</h3>
+                  <p>Template-based and LLM-powered content pipelines</p>
+                  <a href="/#/feed" className={styles.docLink}>Content Guide →</a>
                 </div>
               </div>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Community Resources</h2>
+              <h2 className={styles.sectionTitle}>Community & Support</h2>
               <div className={styles.community}>
                 <div className={styles.communityCard}>
                   <h3>GitHub Repository</h3>
                   <p>Source code, issues, and contributions</p>
-                  <a href="https://github.com/darcos" className={styles.communityLink} target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/reelitback" className={styles.communityLink} target="_blank" rel="noopener noreferrer">
                     View on GitHub →
                   </a>
                 </div>
                 <div className={styles.communityCard}>
-                  <h3>Discussion Forum</h3>
-                  <p>Community discussions and support</p>
-                  <a href="#" className={styles.communityLink}>Join Discussion →</a>
+                  <h3>GenAI Genesis 2026</h3>
+                  <p>Built at Canada{"'"}s Largest AI Hackathon at UofT</p>
+                  <a href="/#/" className={styles.communityLink}>Learn More →</a>
                 </div>
                 <div className={styles.communityCard}>
-                  <h3>Contributing Guide</h3>
-                  <p>How to contribute to DarcOS development</p>
-                  <a href="#" className={styles.communityLink}>Contribute →</a>
+                  <h3>Reel It Back</h3>
+                  <p>The team behind RIB-AuraFlow</p>
+                  <a href="/#/about" className={styles.communityLink}>About Us →</a>
                 </div>
               </div>
             </section>
